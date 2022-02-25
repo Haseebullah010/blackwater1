@@ -1,0 +1,94 @@
+{% extends 'Client/common/base.html' %}
+{% load static %}
+
+{% block head %}
+    <title>DashBoard
+    </title>
+{% endblock %}
+
+{% block content %}
+<div role="main" class="main">
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h4 class="text-dark">Login Details for Credit Monitoring</h4>
+                            </div>
+                            <div class="col-md-6 text-right">
+                                <button type="button" class="btn btn-info">Change Password</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <form class="form-horizontal form-bordered" method="get">
+                            <div class="form-group row pb-4">
+                                <label class="col-lg-3 control-label text-lg-end pt-2" for="inputDefault">Select protected provider</label>
+                                <div class="col-lg-6">
+                                    <select class="form-control" name="choices-language" id="choices-language">
+                                        <option value="English">Select protected provider</option>
+                                        <option value="French">IdentityIQ</option>
+                                        <option value="Spanish">SmartCredit</option>
+                                        <option value="Spanish">MyFreeScore</option>
+                                        <option value="Spanish">MyscoreIq</option>
+                                        <option value="Spanish">PrivacyGuard</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group row pb-4">
+                                <label class="col-lg-3 control-label text-lg-end pt-2" for="inputDisabled">Enter other provider name</label>
+                                <div class="col-lg-6">
+                                    <input class="form-control" id="inputDisabled" type="email" placeholder="Enter other provider name..." >
+                                </div>
+                            </div>
+
+                            <div class="form-group row pb-4">
+                                <label class="col-lg-3 control-label text-lg-end pt-2" for="inputReadOnly">User Name</label>
+                                <div class="col-lg-6">
+                                    <input type="text" value="" id="inputReadOnly" class="form-control" placeholder="User Name">
+                                </div>
+                            </div>
+
+                            <div class="form-group row pb-3">
+                                <label class="col-lg-3 control-label text-lg-end pt-2" for="inputHelpText">Password</label>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" placeholder="Password" id="inputHelpText">
+                                </div>
+                            </div>
+
+                            <div class="form-group row pb-4">
+                                <label class="col-lg-3 control-label text-lg-end pt-2" for="inputRounded">Phone Number</label>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control input-rounded" placeholder="Phone Number" id="inputRounded">
+                                </div>
+                            </div>
+
+                            <div class="form-group row pb-4">
+                                <label class="col-lg-3 control-label text-lg-end pt-2" for="inputFocus">Security word (if you created one)</label>
+                                <div class="col-lg-6">
+                                    <input class="form-control" id="inputFocus" type="text" placeholder="Security word ...">
+                                </div>
+                            </div> 
+                            <div class="form-group row pb-4">
+                                <div class="col-12 text-right">
+                                    <button type="button" class="btn btn-info">update</button>
+
+                                </div>
+                            </div>
+
+                            
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+</div>
+
+{% endblock %}

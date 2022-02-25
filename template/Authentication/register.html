@@ -1,0 +1,1087 @@
+{% extends 'Website/common/base.html' %}
+{% load static %}
+
+{% block head %}
+    <title>Register 
+    </title>
+{% endblock %}
+
+
+{% block content %}
+<style>
+    
+.multisteps-form__progress {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+}
+
+.multisteps-form__progress-btn {
+  transition-property: all;
+  transition-duration: 0.15s;
+  transition-timing-function: linear;
+  transition-delay: 0s;
+  position: relative;
+  padding-top: 20px;
+  color: rgba(108, 117, 125, 0.7);
+  /* text-indent: -9999px; */
+  border: none;
+
+  /* height: 20px; */
+  background-color: transparent;
+   outline: none !important;
+  cursor: pointer;
+}
+@media (min-width: 500px) {
+  .multisteps-form__progress-btn {
+    text-indent: 0;
+
+  }
+}
+.multisteps-form__progress-btn:before {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  display: block;
+  width: 15px;
+  height: 15px;
+  content: '';
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  transition: all 0.15s linear 0s, -webkit-transform 0.15s cubic-bezier(0.05, 1.09, 0.16, 1.4) 0s;
+  transition: all 0.15s linear 0s, transform 0.15s cubic-bezier(0.05, 1.09, 0.16, 1.4) 0s;
+  transition: all 0.15s linear 0s, transform 0.15s cubic-bezier(0.05, 1.09, 0.16, 1.4) 0s, -webkit-transform 0.15s cubic-bezier(0.05, 1.09, 0.16, 1.4) 0s;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  background-color: #fff;
+  box-sizing: border-box;
+  z-index: 3; 
+}
+.multisteps-form__progress-btn:after {
+ 
+  position: absolute;
+  top: 5px;
+  left: calc(-50% - 13px / 2);
+  transition-property: all;
+  transition-duration: 0.15s;
+  transition-timing-function: linear;
+  transition-delay: 0s;
+  display: block;
+  width: 100%;
+  height: 2px;
+  content: '';
+  background-color: currentColor;
+  z-index: 1;
+}
+.multisteps-form__progress-btn:first-child:after {
+  display: none;
+}
+.multisteps-form__progress-btn.js-active {
+  
+  color: #007bff;
+}
+.multisteps-form__progress-btn.js-active:before {
+  -webkit-transform: translateX(-50%) scale(1.2);
+          transform: translateX(-50%) scale(1.2);
+  background-color: currentColor;
+}
+
+.multisteps-form__form {
+  position: relative;
+}
+
+.multisteps-form__panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  opacity: 0;
+  visibility: hidden;
+}
+.multisteps-form__panel.js-active {
+  height: auto;
+  opacity: 1;
+  visibility: visible;
+}
+.multisteps-form__panel[data-animation="scaleOut"] {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+.multisteps-form__panel[data-animation="scaleOut"].js-active {
+  transition-property: all;
+  transition-duration: 0.2s;
+  transition-timing-function: linear;
+  transition-delay: 0s;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+.multisteps-form__panel[data-animation="slideHorz"] {
+  left: 50px;
+}
+.multisteps-form__panel[data-animation="slideHorz"].js-active {
+  transition-property: all;
+  transition-duration: 0.25s;
+  transition-timing-function: cubic-bezier(0.2, 1.13, 0.38, 1.43);
+  transition-delay: 0s;
+  left: 0;
+}
+.multisteps-form__panel[data-animation="slideVert"] {
+  top: 30px;
+}
+.multisteps-form__panel[data-animation="slideVert"].js-active {
+  transition-property: all;
+  transition-duration: 0.2s;
+  transition-timing-function: linear;
+  transition-delay: 0s;
+  top: 0;
+}
+.multisteps-form__panel[data-animation="fadeIn"].js-active {
+  transition-property: all;
+  transition-duration: 0.3s;
+  transition-timing-function: linear;
+  transition-delay: 0s;
+}
+.multisteps-form__panel[data-animation="scaleIn"] {
+  -webkit-transform: scale(0.9);
+          transform: scale(0.9);
+}
+.multisteps-form__panel[data-animation="scaleIn"].js-active {
+  transition-property: all;
+  transition-duration: 0.2s;
+  transition-timing-function: linear;
+  transition-delay: 0s;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+#hidden_div {
+  display: none;
+}
+.CreateAccount{
+  display: flex;
+ 
+  padding-left: 150px;
+}
+</style>
+
+<div role="main" class="main">
+
+    <section class="section section-with-shape-divider page-header page-header-modern page-header-lg border-0 my-0 lazyload" data-bg-src="{% static 'img/demos/business-consulting-3/backgrounds/background-5.jpg' %}" style="background-size: cover; background-position: center;">
+        <div class="container pb-5 my-3">
+            <div class="row mb-4">
+                <div class="col-md-12 align-self-center p-static order-2 text-center">
+                    <h1 class="font-weight-bold text-color-dark text-10">Register</h1>
+                </div>
+                <div class="col-md-12 align-self-center order-1">
+                    <ul class="breadcrumb d-block text-center">
+                        <li><a href="demo-business-consulting-3.html">Black Water</a></li>
+                        <li class="active">Register</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="shape-divider shape-divider-bottom shape-divider-reverse-x" style="height: 123px;">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1920 123" preserveAspectRatio="xMinYMin">
+                <polygon fill="#F3F3F3" points="0,90 221,60 563,88 931,35 1408,93 1920,41 1920,-1 0,-1 " />
+                <polygon fill="#FFFFFF" points="0,75 219,44 563,72 930,19 1408,77 1920,25 1920,-1 0,-1 " />
+            </svg>
+        </div>
+    </section>
+    
+    <div class="container py-4">
+    <form action="" method="POST"  class="needs-validation">
+        
+    <!-- <div class="row "> -->
+        <!-- <div class="col-12 col-lg-8 ml-auto mr-auto mb-4"> -->
+          
+        <!-- </div> -->
+      <!-- </div> -->
+        {% csrf_token %}
+
+        <div class="row justify-content-center">
+            <div class="col-md-8 mb-5 mb-lg-0"  id="step1">
+                <div class="multisteps-form__progress mt-8">
+                    <button class="multisteps-form__progress-btn  js-active" type="button" >step(1) <br>Basic Info</button>
+                    <button class="multisteps-form__progress-btn" type="button" >step(2) <br>Additional Info</button>
+                    <button class="multisteps-form__progress-btn" type="button"  >step(3) <br>Supported Provider Details</button>
+                    <button class="multisteps-form__progress-btn" type="button" title="Message">step(4) <br>Payments and Finished  </button>
+                  </div>
+                
+                  <br>
+                <h4>Basic Information</h4>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>First Name</label>
+                                <input type="text" class="form-control"  id="first_name" maxlength="15" minlength="3" onkeyup="first_name()" name="firtname" />
+                            </div>
+                            <div style="background-color: #007bff;">
+                                <p id="demo">
+
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group col">
+                            <label class="form-label text-color-dark text-3">Password <span class="text-color-danger">*</span></label>
+                            <input type="password" value="" class="form-control form-control-lg text-4" name="password" required>
+                        </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Last Name</label>
+                                <input type="text" class="form-control" name="lastname"/>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Suffix</label>
+                                <input type="text" class="form-control" name="suffix"/>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" class="form-control" name="email" id="checkname" onkeyup="checkuser()" />
+                                <div class="form-wrapper">
+                                    <small id="result1"></small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <!-- <label>Password</label>
+                                <input type="password" class="form-control" name="password" /> -->
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Password</label>
+                                <input type="password" class="form-control" name="password" id="pass" onkeyup="check_pass()"/>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Password(Again)</label>
+                                <input type="password" class="form-control" name="password1" id="pass1" onkeyup="check_pass()"/>
+                                <div class="form-wrapper">
+                                    <small id="result"></small>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Last 4 of SSN</label>
+                                <input type="integer" class="form-control" name="snn_number"/>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>DOB</label>
+                                <input type="date" class="form-control" name="dob" />
+                            </div>
+                        </div>
+                        <div class="col-md-12 text-right" style="text-align:right"  >
+                            <button type="button" class="btn btn-info" onclick="step(2)" id="bbt">Next</button>
+                        </div>
+                    </div>
+              
+            </div>
+            <div class="col-md-8 mb-5 mb-lg-0"  id="step2" style="display:none">
+                <div class="multisteps-form__progress mt-8">
+                    <button class="multisteps-form__progress-btn  js-active" type="button" >step(1) <br>Basic Info</button>
+                    <button class="multisteps-form__progress-btn js-active" type="button" >step(2) <br>Additional Info</button>
+                    <button class="multisteps-form__progress-btn " type="button"  >step(3) <br>Supported Provider Details</button>
+                    <button class="multisteps-form__progress-btn" type="button" title="Message">step(4) <br>Payments and Finished  </button>
+                  </div> 
+                
+                <h4>Additional Info</h4>
+
+               
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Phone(H)</label>
+                                <input type="tel" class="form-control" name="phone_h" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Phone(W)</label>
+                                <input type="tel" class="form-control" name="phone_w"/>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Phone(M)</label>
+                                <input type="tel" class="form-control" name="phone_M" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Fax</label>
+                                <input type="text" class="form-control" name="fax" />
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Mail Address</label>
+                                <textarea class="form-control" rows="3" name="mail_address"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>City</label>
+                                <input type="text" class="form-control" name="city" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>State</label>
+                                
+                                <select class="form-select" name="state" id="">
+                                    <option value="">Select State</option>
+                                    <option value="AA Armed Forces Americas">AA Armed Forces Americas</option>
+                                    <option value="AE Armed Forces Europe/Canada/Middle East/Africa">AE Armed Forces Europe/Canada/Middle East/Africa</option>
+                                    <option value="Alabama">Alabama</option>
+                                    <option value="Alaska">Alaska</option>
+                                    <option value="American Samoa">American Samoa</option>
+                                    <option value="AP Armed Forces Pacific">AP Armed Forces Pacific</option>
+                                    <option value="Arizona">Arizona</option>
+                                    <option value="Arkansas">Arkansas</option>
+                                    <option value="California">California</option>
+                                    <option value="Colorado">Colorado</option>
+                                    <option value="Connecticut">Connecticut</option>
+                                    <option value="Delaware">Delaware</option>
+                                    <option value="District of Columbia">District of Columbia</option>
+                                    <option value="Florida">Florida</option>
+                                    <option value="FM Federated States of Micronesia">FM Federated States of Micronesia</option>
+                                    <option value="Georgia">Georgia</option>
+                                    <option value="Guam">Guam</option>
+                                    <option value="Hawaii">Hawaii</option>
+                                    <option value="Idaho">Idaho</option>
+                                    <option value="Illinois">Illinois</option>
+                                    <option value="Indiana">Indiana</option>
+                                    <option value="Iowa">Iowa</option>
+                                    <option value="Kansas">Kansas</option>
+                                    <option value="Kentucky">Kentucky</option>
+                                    <option value="Louisiana">Louisiana</option>
+                                    <option value="Maine">Maine</option>
+                                    <option value="Maryland">Maryland</option>
+                                    <option value="Massachusetts">Massachusetts</option>
+                                    <option value="MH Marshall Islands">MH Marshall Islands</option>
+                                    <option value="Michigan">Michigan</option>
+                                    <option value="Minnesota">Minnesota</option>
+                                    <option value="Mississippi">Mississippi</option>
+                                    <option value="Missouri">Missouri</option>
+                                    <option value="Montana">Montana</option>
+                                    <option value="Nebraska">Nebraska</option>
+                                    <option value="Nevada">Nevada</option>
+                                    <option value="New Hampshire">New Hampshire</option>
+                                    <option value="New Jersey">New Jersey</option>
+                                    <option value="New Mexico">New Mexico</option>
+                                    <option value="New York">New York</option>
+                                    <option value="North Carolina">North Carolina</option>
+                                    <option value="North Dakota">North Dakota</option>
+                                    <option value="Ohio">Ohio</option>
+                                    <option value="Oklahoma">Oklahoma</option>
+                                    <option value="Oregon">Oregon</option>
+                                    <option value="Pennsylvania">Pennsylvania</option>
+                                    <option value="Puerto Rico">Puerto Rico</option>
+                                    <option value="PW Palau">PW Palau</option>
+                                    <option value="Rhode Island">Rhode Island</option>
+                                    <option value="South Carolina">South Carolina</option>
+                                    <option value="South Dakota">South Dakota</option>
+                                    <option value="Tennessee">Tennessee</option>
+                                    <option value="Texas">Texas</option>
+                                    <option value="U.S. Virgin Islands">U.S. Virgin Islands</option>
+                                    <option value="Utah">Utah</option>
+                                    <option value="Vermont">Vermont</option>
+                                    <option value="Virginia">Virginia</option>
+                                    <option value="Washington">Washington</option>
+                                    <option value="West Virginia">West Virginia</option>
+                                    <option value="Wisconsin">Wisconsin</option>
+                                    <option value="Wyoming">Wyoming</option>
+                                </select>
+                                <!-- <input type="text" class="form-control" /> -->
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Zip Code</label>
+                                <input type="text" class="form-control" name="zip_code" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Country</label>
+                                <input type="text" class="form-control fixed-value" value="United State" name="country" readonly/>
+                            </div>
+                        </div>
+                        <div class="col-md-12 text-right" style="text-align:right">
+                            <button type="button" class="btn btn-info" onclick="step(3)">Next</button>
+                        </div>
+                    </div>
+               
+            </div>
+            <div class="col-md-8 mb-5 mb-lg-0"  id="step3" style="display:none">
+                <div class="multisteps-form__progress mt-8">
+                    <button class="multisteps-form__progress-btn  js-active" type="button" >step(1) <br>Basic Info</button>
+                    <button class="multisteps-form__progress-btn js-active" type="button" >step(2) <br>Additional Info</button>
+                    <button class="multisteps-form__progress-btn js-active" type="button"  >step(3) <br>Supported Provider Details</button>
+                    <button class="multisteps-form__progress-btn" type="button" title="Message">step(4) <br>Payments and Finished  </button>
+                  </div> 
+                
+                <h4>Supported Provider Details</h4>
+
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <select  class="form-select " name="provider" id="provider_value" onmousemove="check_provider(this.value)"  onclick="check_provider(this.value)" onchange="showDiv(this.value);">
+                            <option value="0" selected>Choose Supported Provider</option>
+                            <option value="1">IdentityIQ</option>
+                            <option value="2">SmartCredit</option>
+                            <option value="3">MyFreeScoreNow</option>
+                            <option value="4">MyScoreIQ</option>
+                            <option value="5">PrivacyGuard</option>
+                            <option value="6">IdentityClub</option>
+                            <option value="7">SampleReport</option>
+                          </select> 
+                    </div>
+                    </div>
+                    
+                    <div id="A1" style="display: none;">
+                        <div class="row">
+                          
+                      <div class="CreateAccount"><Col class="md-12">
+                          <p >Please Choose One Provider Detail Account</p>
+                      </Col></div>
+                      
+                      </div>
+                      </div>
+                    
+                    <div id="A" style="display: none;">
+                        <div class="row">
+                          <div class="col-md-6">
+                          <div class="form-group">
+                              <label>username</label>
+                              <input type="text" class="form-control" name="user_A" id="checkname" />
+                          </div>
+                        </div>
+                      <div class="col-md-6">
+                          <div class="form-group">
+                              <label>Password(case sensitive)</label>
+                              <input type="password" class="form-control" name="password_A"/>
+                          </div>
+                      </div>
+                          <div class="col-md-6">
+                          <div class="form-group">
+                              <label>Phone Number</label>
+                              <input type="text" class="form-control" name="num_A"/>
+                          </div>
+                      </div>
+                      <div class="col-md-6">
+                          <div class="form-group">
+                              <label>Security Word</label>
+                              <input type="text" class="form-control" name="security_num_A"/>
+                          </div>
+                      </div> 
+                      <div class="col-md-12">
+                          <div class="form-group">
+                              <label>Notes</label>
+                              <input type="text" class="form-control" name="note_A" />
+                          </div>
+                      </div>
+                      <div class="CreateAccount"><Col class="md-12">
+                          <p >if you don't have an account?Create Account <a href="#" ><p class="text-primary ">IdentityIQ</p></a></p>
+                      </Col></div>
+                      
+                        <!-- <div class="button-row d-flex mt-4 col-12">
+                          <button class="btn btn-primary ml-auto js-btn-next" type="button" title="Next">Next</button>
+                        </div> -->
+                      </div>
+                      </div>
+                         
+                      <div id="B" style="display: none;" >
+                        <div class="row">
+                          <div class="col-md-6">
+                          <div class="form-group">
+                              <label>username</label>
+                              <input type="text" class="form-control" name="user_B" id="checkname" />
+                              
+                          </div>
+                        </div>
+                      <div class="col-md-6">
+                          <div class="form-group">
+                              <label>Password(case sensitive)</label>
+                              <input type="password" class="form-control" name="password_B"/>
+                          </div>
+                      </div>
+                          <div class="col-md-6">
+                          <div class="form-group">
+                              <label>Phone Number</label>
+                              <input type="text" class="form-control" name="num_B"/>
+                          </div>
+                      </div>
+                      <div class="col-md-6">
+                          <div class="form-group">
+                              <label>Last four digit of SSN</label>
+                              <input type="text" class="form-control" name="security_num_B"/>
+                          </div>
+                      </div> 
+                      <div class="col-md-12">
+                          <div class="form-group">
+                              <label>Notes</label>
+                              <input type="text" class="form-control" name="note_B" />
+                          </div>
+                      </div>
+                      <div class="CreateAccount"> <Col class="md-12">
+                        <p >if you don't have an account? Create Account <a href="#" ><p class="text-primary ">SmartCredit</p></a></p>
+                    </Col></div>
+    </div></div>
+                      <div id="C" style="display: none;" >
+                        <div class="row">
+                         <div class="col-md-6">
+                         <div class="form-group">
+                             <label>username</label>
+                             <input type="text" class="form-control" name="user_C" id="checkname" />
+                             <div class="form-wrapper">
+                                 <small id="result1"></small>
+                             </div>
+                         </div>
+                       </div>
+                       <div class="col-md-6">
+                         <div class="form-group">
+                             <label>Password(case sensitive)</label>
+                             <input type="password" class="form-control" name="password_C"/>
+                         </div>
+                       </div>
+                         <div class="col-md-6">
+                         <div class="form-group">
+                             <label>Phone Number</label>
+                             <input type="text" class="form-control" name="num_C"/>
+                         </div>
+                       </div>
+                       <div class="col-md-6">
+                         <div class="form-group">
+                             <label>Security Word</label>
+                             <input type="text" class="form-control" name="security_num_C"/>
+                         </div>
+                       </div> 
+                       <div class="col-md-12">
+                         <div class="form-group">
+                             <label>Notes</label>
+                             <input type="text" class="form-control" name="note_C" />
+                         </div>
+                       </div>
+                       <div class="CreateAccount">
+                           <Col class="md-12">
+                               <p >if you don't have an account? Create Account <a href="#" ><p class="text-primary ">MyFreeScoreNow</p></a></p>
+                           </Col>
+                       </div>
+                       
+                       <!-- <div class="button-row d-flex mt-4 col-12">
+                         <button class="btn btn-primary ml-auto js-btn-next" type="button" title="Next">Next</button>
+                       </div> -->
+                       </div>
+                       </div>
+                       <div id="D" style="display: none;">
+                       <div class="row">
+                         <div class="col-md-6">
+                         <div class="form-group">
+                             <label>username</label>
+                             <input type="text" class="form-control" name="user_D" id="checkname" />
+                             <div class="form-wrapper">
+                                 <small id="result1"></small>
+                             </div>
+                         </div>
+                       </div>
+                       <div class="col-md-6">
+                         <div class="form-group">
+                             <label>Password(case sensitive)</label>
+                             <input type="password" class="form-control" name="password_D"/>
+                         </div>
+                       </div> 
+                         <div class="col-md-6">
+                         <div class="form-group">
+                             <label>Phone Number</label>
+                             <input type="text" class="form-control" name="num_D"/>
+                         </div>
+                       </div>
+                       <div class="col-md-6">
+                         <div class="form-group">
+                             <label>Security Word</label>
+                             <input type="text" class="form-control" name="security_num_D"/>
+                         </div>
+                       </div> 
+                       <div class="col-md-12">
+                         <div class="form-group">
+                             <label>Notes</label>
+                             <input type="text" class="form-control" name="note_D" />
+                         </div>
+                       </div>
+                       <div class="CreateAccount">
+                           <Col class="md-12">
+                               <p >if you don't have an account? Create Account <a href="#" ><p class="text-primary ">MyScoreIQ</p></a></p>
+                           </Col>
+                       </div>
+                       
+                       <!-- <div class="button-row d-flex mt-4 col-12">
+                         <button class="btn btn-primary ml-auto js-btn-next" type="button" title="Next">Next</button>
+                       </div> -->
+                       </div>
+                       </div>             
+                       <div id="E" style="display: none;">
+                       <div class="row">
+                         <div class="col-md-6">
+                         <div class="form-group">
+                           <label>username</label>
+                           <input type="text" class="form-control" name="user_E" id="checkname" />
+                             
+                         </div>
+                       </div>
+                       <div class="col-md-6">
+                         <div class="form-group">
+                             <label>Password(case sensitive)</label>
+                             <input type="password" class="form-control" name="password_E"/>
+                         </div>
+                       </div>
+                         <div class="col-md-6">
+                         <div class="form-group">
+                             <label>Phone Number</label>
+                             <input type="text" class="form-control" name="num_E"/>
+                         </div>
+                       </div>
+                       <div class="col-md-6">
+                         <div class="form-group">
+                             <label>Security Word</label>
+                             <input type="text" class="form-control" name="security_num_E"/>
+                         </div>
+                       </div> 
+                       <div class="col-md-12">
+                         <div class="form-group">
+                             <label>Notes</label>
+                             <input type="text" class="form-control" name="note_E" />
+                         </div>
+                       </div>
+                       <div>
+                           <Col class="md-12">
+                               <p >if you don't have an account? Create Account <a href="#" ><p class="text-primary ">PrivacyGuard</p></a></p>
+                           </Col>
+                       </div>
+                       
+                       <!-- <div class="button-row d-flex mt-4 col-12">
+                         <button class="btn btn-primary ml-auto js-btn-next" type="button" title="Next">Next</button>
+                       </div> -->
+                       </div>
+                       </div>
+                       <div id="F" style="display: none;">
+                        <div class="row">
+                         <div class="col-md-6">
+                         <div class="form-group">
+                             <label>username</label>
+                             <input type="text" class="form-control" name="username" id="checkname" />
+                             
+                         </div>
+                       </div>
+                       <div class="col-md-6">
+                         <div class="form-group">
+                             <label>Password(case sensitive)</label>
+                             <input type="password" class="form-control" name="password2"/>
+                         </div>
+                       </div>  
+                         <div class="col-md-6">
+                         <div class="form-group">
+                             <label>Phone Number</label>
+                             <input type="text" class="form-control" name="num"/>
+                         </div>
+                       </div>
+                       <div class="col-md-6">
+                         <div class="form-group">
+                             <label>Last 4 digit of social Security</label>
+                             <input type="text" class="form-control" name="security_num"/>
+                         </div>
+                       </div> 
+                       <div class="col-md-12">
+                         <div class="form-group">
+                             <label>Notes</label>
+                             <input type="text" class="form-control" name="note" />
+                         </div>
+                       </div>
+                       <div class="CreateAccount">
+                           <Col class="md-12">
+                               <p >if you don't have an account? Create Account <a href="#" ><p class="text-primary">IdentityClub</p></a></p>
+                           </Col>
+                       </div>
+                       
+                       <!-- <div class="button-row d-flex mt-4 col-12">
+                         <button class="btn btn-primary ml-auto js-btn-next" type="button" title="Next">Next</button>
+                       </div> -->
+                       </div>
+                       </div> 
+                       <div id="G" style="display: none;">
+                         <div class="row" >
+                           <div class="col-md-6">
+                           <div class="form-group">
+                             <p>
+                               <label>username</label>
+                               <input type="text" class="form-control" name="user_F" id="checkname" />
+                               
+                           </div>
+                         </div>
+                         <div class="col-md-6">
+                           <div class="form-group">
+                               <label>Password(case sensitive)</label>
+                               <input type="password" class="form-control" name="password_F"/>
+                           </div>
+                         </div>
+                           <div class="col-md-6">
+                           <div class="form-group">
+                               <label>Phone Number</label>
+                               <input type="text" class="form-control" name="num_F"/>
+                           </div>
+                         </div>
+                         <div class="col-md-6">
+                           <div class="form-group">
+                               <label>Security Word</label>
+                               <input type="text" class="form-control" name="security_num_F"/>
+                           </div>
+                         </div> 
+                         <div class="col-md-12">
+                           <div class="form-group">
+                               <label>Notes</label>
+                               <input type="text" class="form-control" name="note_F" />
+                           </div>
+                         </div>
+                         <div class="CreateAccount"> 
+                             <Col class="md-12  ">
+                           <p >if you don't have an account? Create Account <a href="#" ><p class="text-primary">Sample Report</p></a></p>
+                       </Col>
+                       </div>
+                       
+                         
+                         <!-- <div class="button-row d-flex mt-4  col-12">
+                           <button class="btn btn-primary ml-auto js-btn-next" type="button" title="Next">Next</button>
+                         </div> -->
+                         </div>
+                       </div>
+                       <div class="col-md-12 text-right" style="text-align:right">
+                        <button type="button" class="btn btn-info" id="p_button" onclick="step(4)">Next</button>
+                    </div>
+            </div>
+            <div class="col-md-8 mb-5 mb-lg-0"  id="step4" style="display:none">
+                <div class="multisteps-form__progress mt-8">
+                    <button class="multisteps-form__progress-btn  js-active" type="button" >step(1) <br>Basic Info</button>
+                    <button class="multisteps-form__progress-btn js-active" type="button" >step(2) <br>Additional Info</button>
+                    <button class="multisteps-form__progress-btn js-active" type="button"  >step(3) <br>Supported Provider Details</button>
+                    <button class="multisteps-form__progress-btn js-active" type="button" title="Message">step(4) <br>Payments and Finished  </button>
+                  </div> 
+                
+                <h4>Payment And Finish</h4>
+
+               
+                    
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <p>Aggressive Credit Repair</p>
+                        </div>
+                        <div class="col-12 table-responsive">
+                            <table class="table table-striped border">
+                                <thead>
+                                    <tr>
+                                        <th>Premier Plus</th>
+                                        <th class="text-center"><button class="btn btn-success">Basic Price</button></th>
+                                        <th class="text-center"><button class="btn btn-danger">Standard Price</button></th>
+                                        <th class="text-center"><button class="btn btn-info">Standard Price</button></th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Bureau Challenges</td>
+                                        <td class="text-center"><input type="checkbox" checked /></td>
+                                        <td class="text-center"><input type="checkbox" checked /></td>
+                                        <td class="text-center"><input type="checkbox" checked /></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>Creditor Interventions</td>
+                                        <td class="text-center"><input type="checkbox" checked /></td>
+                                        <td class="text-center"><input type="checkbox" checked /></td>
+                                        <td class="text-center"><input type="checkbox" checked /></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>ReportWatch</td>
+                                        <td class="text-center"><input type="checkbox" checked /></td>
+                                        <td class="text-center"><input type="checkbox" checked /></td>
+                                        <td class="text-center"><input type="checkbox" checked /></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>TransUnion Alerts</td>
+                                        <td class="text-center"><input type="checkbox" checked /></td>
+                                        <td class="text-center"><input type="checkbox" checked /></td>
+                                        <td class="text-center"><input type="checkbox" checked /></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>Cease & Desist Letters</td>
+                                        <td class="text-center"><input type="checkbox" checked /></td>
+                                        <td class="text-center"><input type="checkbox" checked /></td>
+                                        <td class="text-center"><input type="checkbox" checked /></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>Bureau Challenges</td>
+                                        <td class="text-center"><input type="checkbox" checked /></td>
+                                        <td class="text-center"><input type="checkbox" checked /></td>
+                                        <td class="text-center"><input type="checkbox" checked /></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>FICO® Score Tracker</td>
+                                        <td class="text-center"><input type="checkbox" checked /></td>
+                                        <td class="text-center"><input type="checkbox" checked /></td>
+                                        <td class="text-center"><input type="checkbox" checked /></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>Personal Finance Tools</td>
+                                        <td class="text-center"><input type="checkbox" checked /></td>
+                                        <td class="text-center"><input type="checkbox" checked /></td>
+                                        <td class="text-center"><input type="checkbox" checked /></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>Personal Finance Tools</td>
+                                        <td class="text-center">$129.56</td>
+                                        <td class="text-center">$100.56</td>
+                                        <td class="text-center">$10.56</td>
+
+                                    </tr>
+                                   
+                                </tbody>
+                            </table>
+                            
+                        </div>
+                        <div class="col-md-12 text-right" style="text-align:right">
+                            <button type="submit" class="btn btn-info">Finish</button>
+                        </div>
+                    </div>
+               
+            </div>
+
+        </div>
+
+    </form>
+    </div>
+</div>
+<script>
+    function checkuser(){
+      let un = document.getElementById("checkname").value;
+      $.ajax ({
+        url:"{% url 'check_user' %}",
+        type:"get",
+        data : {user_n:un},
+        success:function(data){
+          if (data== "Exists"){
+            $("#result1").html("This user name already taken").addClass("text-danger");
+            $("#checkname").addClass("alert alert-danger");
+            $("#checkname").css("border","1px solid red");
+            $("#bbt").attr("disabled","disabled");
+          
+
+          }
+          else{
+            $("#result1").html("");
+            $("#checkname").css("border","1px solid green");
+            $("#checkname").removeClass("alert alert-danger");
+            $("#bbt").removeAttr("disabled");
+          
+           
+            
+          }
+        }
+      })
+    }
+  </script>
+<script>
+    function step(val) {
+        if (val == 1) {
+            $('#step1').css("display", "block");
+            $('#step2').css("display", "none");
+            $('#step3').css("display", "none");
+            $('#step4').css("display", "none");
+
+        }
+        else if (val == 2) {
+            $('#step1').css("display", "none");
+            $('#step2').css("display", "block");
+            $('#step3').css("display", "none");
+            $('#step4').css("display", "none");
+        }
+        else if (val == 3) {
+            $('#step1').css("display", "none");
+            $('#step2').css("display", "none");
+            $('#step3').css("display", "block");
+            $('#step4').css("display", "none");
+        } else {
+            $('#step1').css("display", "none");
+            $('#step2').css("display", "none");
+            $('#step3').css("display", "none");
+            $('#step4').css("display", "block");
+        }
+    }
+</script>
+
+<script>
+    function check_pass(){
+        let p = $ ("#pass").val();
+        let cp = $("#pass1").val();
+        if (p==cp){
+            $("#result").html("Password Confirmed").removeClass("text-danger").addClass("text-success");
+            $("#pass").css("border","1px solid green");
+            $("#pass1").css("border","1px solid green");
+            $("#bbt").removeAttr("disabled");
+        }
+        else
+        {
+            $("#result").html("Password didn't match").addClass("text-danger");
+            $("#pass").css("border","1px solid red");
+            $("#pass1").css("border","1px solid red");
+            $("#bbt").attr("disabled","disabled");
+        }
+    }
+
+</script>
+
+<script>
+    
+    function first_name(){
+        let value = document.getElementById('first_name').value;
+
+        let leng = value.length
+        document.getElementById("demo").innerHTML = leng;
+
+        if (leng == 0) 
+        {
+            $("#bbt").attr("disabled","disabled");
+            document.getElementById("demo").innerHTML = leng;
+
+        }
+        else
+        {
+            $("#bbt").removeAttr("disabled");
+            document.getElementById("demo").innerHTML = len;
+
+        }
+    }
+</script>
+
+<script>
+    function check_provider(val){
+        if (val == 0){
+            $("#p_button").attr("disabled","disabled")
+        }
+        else{
+            $("#p_button").removeAttr("disabled")
+        }
+    }
+</script>
+
+<script>
+    function showDiv(value){
+        if(value=="0"){
+        document.getElementById('A1').style.display="block"
+        document.getElementById('A').style.display="none"
+        document.getElementById('B').style.display="none"
+        document.getElementById('C').style.display="none"
+        document.getElementById('D').style.display="none"
+        document.getElementById('E').style.display="none"
+        document.getElementById('F').style.display="none"
+        document.getElementById('G').style.display="none"
+      }
+      if(value=="1"){
+        document.getElementById('A1').style.display="none"
+        document.getElementById('A').style.display="block"
+        document.getElementById('B').style.display="none"
+        document.getElementById('C').style.display="none"
+        document.getElementById('D').style.display="none"
+        document.getElementById('E').style.display="none"
+        document.getElementById('F').style.display="none"
+        document.getElementById('G').style.display="none"
+      }
+      if(value=="2"){
+        document.getElementById('A1').style.display="none"
+        document.getElementById('A').style.display="none"
+        document.getElementById('B').style.display="block"
+        document.getElementById('C').style.display="none"
+        document.getElementById('D').style.display="none"
+        document.getElementById('E').style.display="none"
+        document.getElementById('F').style.display="none"
+        document.getElementById('G').style.display="none"
+      }
+      if(value=="3"){
+        document.getElementById('A1').style.display="none"
+        document.getElementById('A').style.display="none"
+        document.getElementById('B').style.display="none"
+        document.getElementById('C').style.display="block"
+        document.getElementById('D').style.display="none"
+        document.getElementById('E').style.display="none"
+        document.getElementById('F').style.display="none"
+        document.getElementById('G').style.display="none"
+      }
+      if(value=="4"){
+        document.getElementById('A').style.display="none"
+        document.getElementById('A1').style.display="none"
+        document.getElementById('B').style.display="none"
+        document.getElementById('C').style.display="none"
+        document.getElementById('D').style.display="block"
+        document.getElementById('E').style.display="none"
+        document.getElementById('F').style.display="none"
+        document.getElementById('G').style.display="none"
+      }
+      if(value=="5"){
+        document.getElementById('A1').style.display="none"
+        document.getElementById('A').style.display="none"
+        document.getElementById('B').style.display="none"
+        document.getElementById('C').style.display="none"
+        document.getElementById('D').style.display="none"
+        document.getElementById('E').style.display="block"
+        document.getElementById('F').style.display="none"
+        document.getElementById('G').style.display="none"
+      }
+      if(value=="6"){
+        document.getElementById('A').style.display="none"
+        document.getElementById('B').style.display="none"
+        document.getElementById('C').style.display="none"
+        document.getElementById('A1').style.display="none"
+        document.getElementById('D').style.display="none"
+        document.getElementById('E').style.display="none"
+        document.getElementById('F').style.display="block"
+        document.getElementById('G').style.display="none"
+      }
+      if(value=="7"){
+        document.getElementById('A1').style.display="none"
+        document.getElementById('A').style.display="none"
+        document.getElementById('B').style.display="none"
+        document.getElementById('C').style.display="none"
+        document.getElementById('D').style.display="none"
+        document.getElementById('E').style.display="none"
+        document.getElementById('F').style.display="none"
+        document.getElementById('G').style.display="block"
+      }
+    }
+    </script>
+
+    <script src="{% static 'function.js' %}"></script>
+
+{% endblock %}
